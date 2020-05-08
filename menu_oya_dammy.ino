@@ -10,7 +10,7 @@
 #include    <SPI.h>
 #include    <SoftwareSerial.h>
 
-//#include    "Debug.h"
+#include    "Debug.h"
 
 
 /***********************************************************************************************************************/
@@ -113,7 +113,7 @@ int     testyou;
 union {
         unsigned long   rem32;
 
-            struct {                                /* 16bit2陋滂ｿｽ=32bit邵ｺ�ｽｮ隶堤洸�ｿｽ�ｿｽ闖ｴ�ｿｽ */
+            struct {                                /* 16bit2蛟�=32bit縺ｮ讒矩��菴� */
                 unsigned int     code1;
                 unsigned int     comm1;
             } data;
@@ -127,6 +127,112 @@ const byte tbuff[]= { 0x02,"F0",
                      "H0",0x3f,'1','\0'
                     };
 
+const byte goMi1[]= {   0x02,0x30,0x30,0x56,0x03,0x55,
+                        0x02,0x30,0x31,0x56,0x03,0x54,
+                        0x02,0x30,0x32,0x56,0x03,0x57,
+                        0x02,0x30,0x33,0x56,0x03,0x56,
+                        0x02,0x30,0x34,0x56,0x03,0x51,
+                        0x02,0x30,0x35,0x56,0x03,0x50,
+                        0x02,0x30,0x36,0x56,0x03,0x53,
+                        0x02,0x30,0x37,0x56,0x03,0x52,
+                        0x02,0x30,0x38,0x56,0x03,0x5D,
+                        0x02,0x30,0x39,0x56,0x03,0x5C,
+                        0x02,0x30,0x41,0x56,0x03,0x24,
+                        0x02,0x30,0x42,0x56,0x03,0x27,
+                        0x02,0x30,0x43,0x56,0x03,0x26,
+                        0x02,0x30,0x44,0x56,0x03,0x21,
+                        0x02,0x30,0x45,0x56,0x03,0x20,
+                        0x02,0x30,0x46,0x56,0x03,0x23,
+                        
+                        0x02,0x31,0x30,0x56,0x03,0x54,
+                        0x02,0x31,0x31,0x56,0x03,0x55,
+                        0x02,0x31,0x32,0x56,0x03,0x56,
+                        0x02,0x31,0x33,0x56,0x03,0x57,
+                        0x02,0x31,0x34,0x56,0x03,0x50,
+                        0x02,0x31,0x35,0x56,0x03,0x51,
+                        0x02,0x31,0x36,0x56,0x03,0x52,
+                        0x02,0x31,0x37,0x56,0x03,0x53,
+                        0x02,0x31,0x38,0x56,0x03,0x5C,
+                        0x02,0x31,0x39,0x56,0x03,0x5D,
+                        0x02,0x31,0x41,0x56,0x03,0x25,
+                        0x02,0x31,0x42,0x56,0x03,0x26,
+                        0x02,0x31,0x43,0x56,0x03,0x27,
+                        0x02,0x31,0x44,0x56,0x03,0x20,
+                        0x00
+};
+const byte goMi2[]= {   0x02,0x46,0x31,
+                        0x48,0x30,0x30,0x30,
+                        0x48,0x30,0x31,0x30,
+                        0x48,0x30,0x32,0x30,
+                        0x48,0x30,0x33,0x30,
+                        0x48,0x30,0x34,0x30,
+                        0x48,0x30,0x35,0x30,
+                        0x48,0x30,0x36,0x30,
+                        0x48,0x30,0x37,0x30,
+                        0x48,0x30,0x38,0x30,
+                        0x48,0x30,0x39,0x30,
+                        0x48,0x30,0x41,0x30,
+                        0x48,0x30,0x42,0x30,
+                        0x48,0x30,0x43,0x30,
+                        0x48,0x30,0x44,0x30,
+                        0x48,0x30,0x45,0x30,
+                        0x48,0x30,0x46,0x30,
+                        0x48,0x31,0x30,0x30,
+                        0x48,0x31,0x31,0x30,
+                        0x48,0x31,0x32,0x30,
+                        0x48,0x31,0x33,0x30,
+                        0x48,0x31,0x34,0x30,
+                        0x48,0x31,0x35,0x30,
+                        0x48,0x31,0x36,0x30,
+                        0x48,0x31,0x37,0x30,
+                        0x48,0x31,0x38,0x30,
+                        0x48,0x31,0x39,0x30,
+                        0x48,0x31,0x41,0x30,
+                        0x48,0x31,0x42,0x30,
+                        0x48,0x31,0x43,0x30,
+                        0x48,0x31,0x44,0x30,
+                        0x48,0x31,0x45,0x30,
+                        0x48,0x31,0x46,0x30,
+                        0x03,0x55,0x00
+};
+const byte goMi3[]= {   0x02,0x46,0x32,
+                        0x48,0x30,0x30,0x30,
+                        0x48,0x30,0x31,0x30,
+                        0x48,0x30,0x32,0x30,
+                        0x48,0x30,0x33,0x30,
+                        0x48,0x30,0x34,0x30,
+                        0x48,0x30,0x35,0x30,
+                        0x48,0x30,0x36,0x30,
+                        0x48,0x30,0x37,0x30,
+                        0x48,0x30,0x38,0x30,
+                        0x48,0x30,0x39,0x30,
+                        0x48,0x30,0x41,0x30,
+                        0x48,0x30,0x42,0x30,
+                        0x48,0x30,0x43,0x30,
+                        0x48,0x30,0x44,0x30,
+                        0x48,0x30,0x45,0x30,
+                        0x48,0x30,0x46,0x30,
+                        0x48,0x31,0x30,0x30,
+                        0x48,0x31,0x31,0x30,
+                        0x48,0x31,0x32,0x30,
+                        0x48,0x31,0x33,0x30,
+                        0x48,0x31,0x34,0x30,
+                        0x48,0x31,0x35,0x30,
+                        0x48,0x31,0x36,0x30,
+                        0x48,0x31,0x37,0x30,
+                        0x48,0x31,0x38,0x30,
+                        0x48,0x31,0x39,0x30,
+                        0x48,0x31,0x41,0x30,
+                        0x48,0x31,0x42,0x30,
+                        0x48,0x31,0x43,0x30,
+                        0x48,0x31,0x44,0x30,
+                        0x48,0x31,0x45,0x30,
+                        0x48,0x31,0x46,0x30,
+                        0x48,0x32,0x30,0x30,
+                        0x03,0x55,0x00
+};
+
+byte    Tx[5];
 
 byte    hflag= 0;
 
@@ -141,7 +247,7 @@ byte    hflag= 0;
 void setup() {
     Serial.begin(19200,SERIAL_8E1);     //* Serial.begin(19200);
     
-    //* softSerial.begin(19200);
+    //softSerial.begin(19200);
     
     //BeginDebugPrint();
     //DebugPrint("Initialize..");
@@ -161,6 +267,7 @@ void setup() {
     //softSerial.write(0x05);  
     delay(500);
     
+    ASC3100V();
 }
 /***********************************************************************************************************************
 * Function Name: 
@@ -170,11 +277,15 @@ void setup() {
 ***********************************************************************************************************************/
 void loop(){ 
 
+
+    
+
     if(remrecv == true) remRec();
+
+#if 0
     serRead();
     stxComm();
     
-#if 0
     if(hflag==0xfa){
         hflag= 0;
         ansM= 0;
@@ -234,7 +345,7 @@ void yPolling(){
             menuY();
            
             
-            ansM=2;            //* Y郢ｧ雋橸ｿｽ�ｽｺ邵ｺ蜉ｱ笳�郢ｧ迚呻ｽｼ�ｽｷ陋ｻ�ｽｶ騾ｧ�ｿｽ邵ｺ�ｽｫ
+            ansM=2;            //* Y繧貞�ｺ縺励◆繧牙ｼｷ蛻ｶ逧�縺ｫ
             //* yStatus();
             dataClr(data,31);               //rxbuff CLR
             //DebugPrint("debig Print y");
@@ -302,26 +413,26 @@ void blink(){
 }
 /***********************************************************************************************************************
 * Function Name: 
-* Description  : 郢晁�後Ε郢晁ｼ斐＜郢晢ｽｪ郢晢ｽｳ郢ｧ�ｽｰ邵ｺ�ｽｮ邵ｺ�ｽｿ邵ｲ竏晢ｿｽ�ｽｦ騾��ｿｽ邵ｺ�ｽｯenqComm()邵ｺ陌腎xComm()邵ｺ�ｽｧ
+* Description  : 繝舌ャ繝輔ぃ繝ｪ繝ｳ繧ｰ縺ｮ縺ｿ縲∝�ｦ逅�縺ｯenqComm()縺虐txComm()縺ｧ
 * Arguments    : Code
 * Return Value : None
 ***********************************************************************************************************************/
 void serRead(){
     
-    if(Serial.available() > 0){                         //-1邵ｺ迹夲ｽｿ譁絶夢邵ｺ�ｽｦ邵ｺ荳奇ｽ狗ｸｺ荵晢ｽ�
+    if(Serial.available() > 0){                         //-1縺瑚ｿ斐▲縺ｦ縺上ｋ縺九ｂ
         
         data[g_index]   =   Serial.read();
        
         (rxFlg== 0x03)&&(rxFlg= '!');
 
-        if(data[g_index]    ==0x02 && rxFlg==0){            /*郢ｧ�ｽｹ郢ｧ�ｽｿ郢晢ｽｼ郢晏沺�ｽ､諛ｷ�ｿｽ�ｽｺ*/
+        if(data[g_index]    ==0x02 && rxFlg==0){            /*繧ｹ繧ｿ繝ｼ繝域､懷�ｺ*/
             rxFlg   =0x02;
             g_index =0;
             data[g_index]   =0x02;                          /* STX */
         }
-        if(data[g_index]    ==0x03 && rxFlg==0x02)rxFlg=0x03;/*郢ｧ�ｽｨ郢晢ｽｳ郢晉判�ｽ､諛ｷ�ｿｽ�ｽｺ*/
+        if(data[g_index]    ==0x03 && rxFlg==0x02)rxFlg=0x03;/*繧ｨ繝ｳ繝画､懷�ｺ*/
             
-        //if(data[g_index]    ==0x05 && rxFlg==0){            /*ENQ隶�諛ｷ�ｿｽ�ｽｺ*/
+        //if(data[g_index]    ==0x05 && rxFlg==0){            /*ENQ讀懷�ｺ*/
         //    rxFlg   ='?';                                   /* 0x3F */
         //    g_index    =0;
         //    data[g_index]   =0x05;                          /* ENQ */
@@ -350,25 +461,23 @@ void stxComm(){
     if(rxFlg == '!'){
         rxFlg = 0;
         g_index= 0;
-       // for(byte i=0; 0x03!=data[i]; i++){
-       //     Serial.write(data[i]);    
-       // }
+
+        for(byte i=0; 0x03!=data[i]; i++){
+            Serial.write(data[i]);    
+        }
             
         if(data[1]== 'F' && data[2]== 'F'){
-            //if(data[3]=='x') ansM= 1;
-            //if(data[3]=='i'){
-            //    digitalWrite(DE, HIGH);
-            //    for(byte i=0; '\0'!=tbuff[i]; i++){
-            //        Serial.write(tbuff[i]);          
-            //    }
-            // ansM=2;
-            
-            if(data[3]== 'h'){
-              digitalWrite(DE,HIGH);
-              Serial.write(0x04);
-              Serial.flush();
-              digitalWrite(DE, LOW);
+            if(data[3]=='x') ansM= 1;
+            if(data[3]=='i'){
+                digitalWrite(DE, HIGH);
+                for(byte i=0; '\0'!=tbuff[i]; i++){
+                    Serial.write(tbuff[i]);
+                        
+                }
+                digitalWrite(DE, LOW);
+                ansM=2;
             }
+        
         }
     }
     if(rxFlg== '?'){
@@ -419,7 +528,7 @@ struct  remcode{
         void    (*pfunk)(void);
 }
 
-const   remcode[17] ={  0xB847,out1set,     //* 1
+const   remcode[18] ={  0xB847,out1set,     //* 1
                         0xF40B,out2set,     //* 2
                         0xF50A,out3set,     //* 3
                         0xF609,out4set,     //* 4
@@ -436,10 +545,60 @@ const   remcode[17] ={  0xB847,out1set,     //* 1
                         0xB04F,menuY,     //* blue
                         0xB14E,menuE,     //* red
                         0xED12,menuV,     //* green
-                        0xEE11,yStatus,   //* yawlo
-                        0xF708,ans06      //*
+                        0xEE11,yStatus,    //* yawlo
+                        0xE31C,outIni,     //*
+                        0xA45B,dammy
+                        
                         };
 
+struct  room{
+        byte    ascii_h;
+        byte    ascii_l;                        
+}
+const   room[32] = {    '0','0',
+                        '0','1',
+                        '0','2',
+                        '0','3',
+                        '0','4',
+                        '0','5',
+                        '0','6',
+                        '0','7',
+                        '0','8',
+                        '0','9',
+                        '0','A',
+                        '0','B',
+                        '0','C',
+                        '0','D',
+                        '0','E',
+                        '0','F',
+                        '1','0',
+                        '1','1',
+                        '1','2',
+                        '1','3',
+                        '1','4',
+                        '1','5',
+                        '1','6',
+                        '1','7',
+                        '1','8',
+                        '1','9',
+                        '1','A',
+                        '1','B',
+                        '1','C',
+                        '1','D',
+                        '1','E',
+                        '1','F'
+};
+/***********************************************************************************************************************
+* Function Name: 
+* Description  : 
+* Arguments    : ascii
+* Return Value : hex
+*********************************************************************************************************************/
+void    ascConvert(byte  i){
+            
+            Tx[1]= room[i].ascii_h;
+            Tx[2]= room[i].ascii_l;
+}                        
 /***********************************************************************************************************************
 * Function Name: 
 * Description  : 
@@ -457,7 +616,7 @@ void    remRec(){
                 return;
             }
             
-            char    i = select(remin.data.comm1);   //-1邵ｺ譴ｧ諤冗ｹｧ荵敖ｰ郢ｧ蝟ｶhar陜呻ｿｽ
+            char    i = select(remin.data.comm1);   //-1縺梧怏繧九°繧営har蝙�
             
             if(i == -1){                             //return(-1) ERR
                 return;
@@ -468,7 +627,7 @@ void    remRec(){
             (*remcode[i].pfunk)();
                 
             //* softSerial.write(0x03);
-            //* softSerial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+            //* softSerial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
             Serial.flush();
             DWD12_LOW();        
             
@@ -477,7 +636,7 @@ void    remRec(){
 }
 /***********************************************************************************************************************
 * Function Name: 
-* Description  : 郢晢ｿｽ郢ｧ�ｽｹ郢晁ご逡�
+* Description  : 繝�繧ｹ繝育畑
 * Arguments    : Code
 * Return Value : None
 ***********************************************************************************************************************/
@@ -487,7 +646,7 @@ void    ledMoni(){
         ledout = !ledout; 
 }
 /***********************************************************************************************************************
-* Function Name: 邵ｺ阮呻ｼ�邵ｺ�ｽｧ陞ｳ貅ｯ�ｽ｡蠕後■郢ｧ�ｽ､郢晢ｿｽ
+* Function Name: 縺薙％縺ｧ螳溯｡後ち繧､繝�
 * Description  : 
 * Arguments    : Code
 * Return Value : None
@@ -495,28 +654,28 @@ void    ledMoni(){
 #if  0
 void     select(int key){
 
-        for(byte i=0;i<17;i++){
+        for(byte i=0;i<18;i++){
             if(remcode[i].key   ==  key){
-                (*remcode[i].pfunk)();          //邵ｺ阮呻ｼ�邵ｺ�ｽｧ陞ｳ貅ｯ�ｽ｡�ｿｽ
+                (*remcode[i].pfunk)();          //縺薙％縺ｧ螳溯｡�
                 break;
             }
         }
 }
 #endif
 /***********************************************************************************************************************
-* Function Name: 隰鯉ｽｻ邵ｺ�ｽ｣邵ｺ�ｽｦ陞ｳ貅ｯ�ｽ｡蠕後■郢ｧ�ｽ､郢晢ｿｽ
+* Function Name: 謌ｻ縺｣縺ｦ螳溯｡後ち繧､繝�
 * Description  : 
 * Arguments    : Code
 * Return Value : None
 ***********************************************************************************************************************/
 char     select(int key){
 
-        for(byte i=0;i<17;i++){
+        for(byte i=0;i<18;i++){
             if(remcode[i].key   ==  key){
-                return(i);                      //隰鯉ｽｻ邵ｺ�ｽ｣邵ｺ�ｽｦ陞ｳ貅ｯ�ｽ｡�ｿｽ      
+                return(i);                      //謌ｻ縺｣縺ｦ螳溯｡�      
             }
         }
-        return(-1);                             //-1邵ｺ�ｿｽ邵ｺ荵晢ｽ営har陜呻ｿｽ
+        return(-1);                             //-1縺�縺九ｉchar蝙�
 }                                                                                        
 /***********************************************************************************************************************
 * Function Name: 
@@ -555,97 +714,97 @@ void    clkWait(){
 void    out1set(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K001"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K001"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out2set(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K012"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K012"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out3set(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K021"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K021"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out4set(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K031"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K031"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out5set(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K041"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K041"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out6set(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K051"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K051"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out1clr(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K000"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K000"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out2clr(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K010"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K010"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out3clr(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K020"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K020"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out4clr(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K030"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K030"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);           //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);           //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out5clr(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K040"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K040"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 void    out6clr(){
         digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0K050"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0K050"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x21);             //陷ｿ蛹∬ｦ�邵ｺ蛹ｻ笘�郢晢ｿｽ郢晄ｺ假ｿｽ�ｽｼ
+        Serial.write(0x21);             //蜿匁覆縺医★繝�繝溘�ｼ
         digitalWrite(DE, LOW);
 }
 #endif
@@ -654,7 +813,7 @@ void    vStatus(){
         //DWD12_HIGH();
         //digitalWrite(DE, HIGH);
         Serial.write(0x02);
-        Serial.print(F("D0V"));    //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("D0V"));    //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x21);
         //digitalWrite(DE, LOW);
@@ -665,9 +824,9 @@ void    yStatus(){
         //DWD12_HIGH();                 // 3clock
         //digitalWrite(DE, HIGH);       //40clock
         Serial.write(0x02);
-        Serial.print(F("D0Y"));    //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0Y"));    //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
-        Serial.write(0x2E);
+        Serial.write(0x2c);
         //asm("CBI 0x05,4");              // 2clock
         //DWD12_LOW();                 // 3clock
         //digitalWrite(DE, LOW);        //40clock
@@ -675,13 +834,15 @@ void    yStatus(){
 void    menuE(){
         //digitalWrite(DE, HIGH);       //40clock
         Serial.write(0x05);
-        Serial.print(F("F0"));    //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0"));    //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         //digitalWrite(DE, LOW);        //40clock          
 }
 void    menuV(){
-        //digitalWrite(DE, HIGH);       //40clock
+        digitalWrite(DE, HIGH);       //40clock
+        outGomi();
+        delay(1);
         Serial.write(0x02);
-        Serial.print(F("F0V"));    //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0V"));    //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x23);
         //digitalWrite(DE, LOW);        //40clock                  
@@ -689,14 +850,12 @@ void    menuV(){
 void    menuY(){
         //digitalWrite(DE, HIGH);       //40clock
         Serial.write(0x02);
-        Serial.print(F("F0Y"));    //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0Y"));    //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x2C);
         //digitalWrite(DE, LOW);        //40clock                  
 }
-void    ans06(){
-        Serial.write(0x06);
-}
+
 /***********************************************************************************************************************
 * Function Name: 
 * Description  : 
@@ -705,73 +864,157 @@ void    ans06(){
 ***********************************************************************************************************************/
 void    out1set(){
         Serial.write(0x02);
-        Serial.print(F("F0H001"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H001"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x0c); 
 }
 void    out2set(){
         Serial.write(0x02);
-        Serial.print(F("F0H011"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H011"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x0d);
 }
 void    out3set(){
         Serial.write(0x02);
-        Serial.print(F("F0H021"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H021"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x0e);
 }
 void    out4set(){
         Serial.write(0x02);
-        Serial.print(F("F0H031"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H031"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x0f);
 }
 void    out5set(){
         Serial.write(0x02);
-        Serial.print(F("F0H041"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H041"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x08);
 }
 void    out6set(){
         Serial.write(0x02);
-        Serial.print(F("F0H051"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H051"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x09);
 }
 void    out1clr(){
         Serial.write(0x02);
-        Serial.print(F("F0H000"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H000"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x0d);
 }
 void    out2clr(){
         Serial.write(0x02);
-        Serial.print(F("F0H010"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H010"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x0c);
 }
 void    out3clr(){
         Serial.write(0x02);
-        Serial.print(F("F0H020"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H020"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x0f);
 }
 void    out4clr(){
         Serial.write(0x02);
-        Serial.print(F("F0H030"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H030"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x0e);
 }
 void    out5clr(){
         Serial.write(0x02);
-        Serial.print(F("F0H040"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H040"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x09);
 }
 void    out6clr(){
         Serial.write(0x02);
-        Serial.print(F("F0H050"));  //flash-> RAM郢ｧ蜻茨ｽｶ驛�ｽｲ�ｽｻ邵ｺ蜉ｱ竊醍ｸｺ�ｿｽ
+        Serial.print(F("F0H050"));  //flash-> RAM繧呈ｶ郁ｲｻ縺励↑縺�
         Serial.write(0x03);
         Serial.write(0x08);
 }
+void    outIni(){
+        Serial.write(0x02);
+        Serial.print(F("F0H000"));
+        Serial.print(F("H010"));
+        Serial.print(F("H020"));
+        Serial.print(F("H030"));
+        Serial.print(F("H040"));
+        Serial.print(F("H050"));  
+        Serial.print(F("H060"));
+        Serial.print(F("H070"));
+        Serial.print(F("H080"));
+        Serial.print(F("H090"));
+        Serial.print(F("H0A0"));
+        Serial.print(F("H0B0"));
+        Serial.print(F("H0C0"));
+        Serial.print(F("H0D0"));
+        Serial.print(F("H0E0"));  
+        Serial.print(F("H0F0"));
+        Serial.print(F("H100"));
+        Serial.print(F("H110"));
+        Serial.print(F("H120"));
+        Serial.print(F("H130"));
+        Serial.print(F("H140"));
+        Serial.print(F("H150"));
+        Serial.print(F("H160"));
+        Serial.print(F("H170"));  
+        Serial.print(F("H180"));
+        Serial.print(F("H190"));
+        Serial.print(F("H1A0"));
+        Serial.print(F("H1B0"));
+        Serial.print(F("H1C0"));
+        Serial.print(F("H1D0"));
+        Serial.print(F("H1E0"));
+        Serial.print(F("H1F0"));
+        Serial.write(0x03);
+        Serial.write(0x75);
+}
+
+void    ASC3100V(){
+        digitalWrite(DE, HIGH);       //40clock
+        
+        Tx[0] = 0x02;
+        Tx[3] = 'V';
+        Tx[4] = 0x03;
+
+        for(byte i=0; i<33; i++){
+        ascConvert(i);
+        Tx[5] = Tx[1]^Tx[2]^Tx[3]^Tx[4];
+        Serial.write(Tx[0]);
+        Serial.write(Tx[1]);
+        Serial.write(Tx[2]);
+        Serial.write(Tx[3]);
+        Serial.write(Tx[4]);
+        Serial.write(Tx[5]);    
+        }
+        
+        digitalWrite(DE, LOW);       //40clock
+}
+/***********************************************************************************************************************
+* Function Name: 
+* Description  : 
+* Arguments    : Code
+* Return Value : None
+***********************************************************************************************************************/
+void    outGomi(){
+         for(byte i=0; '\0'!=goMi1[i]; i++){
+                    Serial.write(goMi1[i]);         
+                }
+}
+/***********************************************************************************************************************
+* Function Name: 
+* Description  : 
+* Arguments    : Code
+* Return Value : None
+***********************************************************************************************************************/
+void    dammy(){
+        for(byte i=0; '\0'!=goMi2[i]; i++){
+                    Serial.write(goMi2[i]);         
+                } 
+        for(byte i=0; '\0'!=goMi3[i]; i++){
+                    Serial.write(goMi3[i]);         
+                }   
+}
+
